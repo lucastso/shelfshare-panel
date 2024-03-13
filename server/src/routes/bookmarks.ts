@@ -6,24 +6,39 @@ export const bookmarkRoutes = async (app: FastifyInstance) => {
   app.get("/bookmarks", async () => {
     const bookmarks = await prisma.bookmark.findMany({
       orderBy: {
-        createdAt: "desc",
+        created_at: "desc",
       },
     });
 
     return bookmarks;
   });
 
-  app.post("/bookmark/:id", async (request) => {
-    const paramsSchema = z.object({
-      id: z.string(),
+  app.post("/bookmark", async (request) => {
+    const bodySchema = z.object({
+      user_id: z.number(),
+      folder_id: z.number(),
+      name: z.string(),
+      color: z.string(),
+      icon: z.string(),
+      url: z.string(),
+      created_at: z.string(),
     });
 
-    const { id } = paramsSchema.parse(request.params);
+    const { name, color, folder_id, icon, url, user_id, created_at } =
+      bodySchema.parse(request.body);
 
-    await prisma.bookmark.update({
-      where: {
-        id,
+    const products = prisma.bookmark.create({
+      data: {
+        name,
+        color,
+        folder_id,
+        icon,
+        url,
+        user_id,
+        created_at,
       },
     });
+
+    return products;
   });
 };

@@ -10,10 +10,12 @@ datasource db {
 model Bookmark {
   id Int @id @default(autoincrement())
   user_id Int
+  folder_id Int
   url String
   name String
   color String
   icon String
+  created_at DateTime @default(now())
 }
 
 model Folder {
@@ -21,4 +23,12 @@ model Folder {
   creator_id Int
   collabs_id Int[]
   name String
+  created_at DateTime @default(now())
+}
+
+model FolderSharing {
+  id Int @id @default(autoincrement())
+  folder_id Int
+  user_id Int
+  created_at DateTime @default(now())
 }
