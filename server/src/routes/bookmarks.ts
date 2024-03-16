@@ -17,28 +17,25 @@ export const bookmarkRoutes = async (app: FastifyInstance) => {
     const bodySchema = z.object({
       user_id: z.number(),
       folder_id: z.number(),
+      url: z.string(),
       name: z.string(),
       color: z.string(),
       icon: z.string(),
-      url: z.string(),
-      created_at: z.string(),
     });
 
-    const { name, color, folder_id, icon, url, user_id, created_at } =
-      bodySchema.parse(request.body);
+    const { name, color, folder_id, icon, url, user_id } = bodySchema.parse(
+      request.body
+    );
 
-    const products = prisma.bookmark.create({
+    prisma.bookmark.create({
       data: {
+        user_id,
+        folder_id,
+        url,
         name,
         color,
-        folder_id,
         icon,
-        url,
-        user_id,
-        created_at,
       },
     });
-
-    return products;
   });
 };

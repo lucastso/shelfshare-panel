@@ -19,5 +19,5 @@ app
     port: PORT,
   })
   .then(() => {
-    console.log("🚀 Server running!");
+    console.log(`🚀 Server running on port ${PORT}!`);
   });
