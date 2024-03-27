@@ -17,7 +17,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={GeistSans.className}>
         <Providers>
-          <main className="flex min-h-screen flex-col justify-between overflow-x-hidden">
+          <main className="relative flex min-h-screen flex-col justify-between overflow-x-hidden">
             {children}
           </main>
         </Providers>
