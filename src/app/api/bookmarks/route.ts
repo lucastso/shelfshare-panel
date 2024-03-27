@@ -7,5 +7,5 @@ export async function GET() {
     },
   });
 
-  return bookmarks;
+  return Response.json(bookmarks);
 }
