@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
 import "./globals.css";
-
-const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Tabdraw - Collaborative bookmark",
@@ -16,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={outfit.className}>{children}</body>
+      <body className={GeistSans.className}>{children}</body>
     </html>
   );
 }
