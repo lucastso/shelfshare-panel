@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
+import Providers from "@/components/providers";
 
 export const metadata: Metadata = {
   title: "Tabdraw - Collaborative bookmark",
@@ -14,7 +15,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={GeistSans.className}>{children}</body>
+      <body className={GeistSans.className}>
+        <Providers>
+          <main className="flex min-h-screen flex-col justify-between overflow-x-hidden">
+            {children}
+          </main>
+        </Providers>
+      </body>
     </html>
   );
 }
