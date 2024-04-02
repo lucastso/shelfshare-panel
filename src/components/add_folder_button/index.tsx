@@ -6,8 +6,8 @@ import { api } from "@/lib/axios";
 const AddFolderButton = () => {
   const [formValid, setFormValid] = useState(false);
   const [formData, setFormData] = useState({
-    creator_id: 1,
-    collabs_id: [1],
+    creator_id: "1",
+    collabs_id: ["1"],
     name: "Folder 1",
   });
 

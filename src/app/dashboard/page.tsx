@@ -6,6 +6,7 @@ import { FolderProps } from "@/types/folder_props";
 import DeleteButton from "@/components/delete_button";
 import { getServerSession } from "next-auth";
 import { authConfig, loginIsRequiredServer } from "@/lib/auth";
+import LogOutButton from "@/components/log_out_button";
 
 export default async function Dashboard() {
   const requestBookmarks = await api.get("/bookmarks");
@@ -20,11 +21,13 @@ export default async function Dashboard() {
     <section className="p-4 flex flex-col gap-4 bg-zinc-50 h-auto">
       <h1 className="text-xl">tabdraw</h1>
 
+      <LogOutButton />
+
+      <span>{session?.user?.id}</span>
       <span>{session?.user?.name}</span>
+      <span>{session?.user?.email}</span>
 
       <AddFolderButton />
-
-      <Link href="/sign-in">Entrar</Link>
 
       <span>bookmarks:</span>
       {dataBookmarks.map((item) => (
