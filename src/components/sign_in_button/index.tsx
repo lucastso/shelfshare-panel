@@ -3,9 +3,16 @@
 import { signIn } from "next-auth/react";
 
 const SignInButton = () => {
+  const handleSignIn = async () => {
+    await signIn("google", {
+      redirect: true,
+      callbackUrl: "/dashboard",
+    });
+  };
+
   return (
     <button
-      onClick={() => signIn("google")}
+      onClick={handleSignIn}
       type="button"
       className="flex h-12 w-full items-center justify-center space-x-2 rounded-md border px-4 text-sm transition-all border-gray-300 bg-white text-gray-600 hover:bg-gray-50"
     >
