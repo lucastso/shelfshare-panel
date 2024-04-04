@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        hero: "url('/dot-grid.png')",
+        hero: "url('/bg.png')",
       },
     },
     screens: {

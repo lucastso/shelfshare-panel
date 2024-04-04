@@ -14,7 +14,7 @@ const SignInButton = () => {
     <button
       onClick={handleSignIn}
       type="button"
-      className="flex h-12 w-full items-center justify-center space-x-2 rounded-md border px-4 text-sm transition-all border-gray-300 bg-white text-gray-600 hover:bg-gray-50"
+      className="flex h-12 w-full items-center justify-center space-x-2 rounded-md border px-4 text-sm transition-all border-zinc-800 bg-zinc-900 text-white hover:bg-zinc-800"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

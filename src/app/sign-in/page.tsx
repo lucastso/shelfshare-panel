@@ -4,8 +4,8 @@ import Image from "next/image";
 const SignIn = () => {
   return (
     <div className="h-screen w-screen overflow-hidden flex items-center justify-center">
-      <div className="border grid grid-rows-2 rounded-md border-gray-300">
-        <div className="flex items-center justify-center border-b border-gray-300">
+      <div className="border grid grid-rows-2 rounded-md border-zinc-800">
+        <div className="flex items-center justify-center border-b border-zinc-800">
           <Image
             src="/logo.png"
             alt=""

@@ -4,11 +4,11 @@ import Image from "next/image";
 
 const Home = () => {
   return (
-    <>
+    <section className="bg-hero">
       <Navbar />
       <div className="mx-auto mb-auto overflow-x-hidden h-screen flex flex-col items-center justify-center space-y-24">
         <section className="max-w-lg flex flex-col items-center justify-center space-y-4">
-          <h1 className="text-gray-900 text-5xl text-center leading-tight font-bold">
+          <h1 className="text-white text-5xl text-center leading-tight font-bold">
             Easily Share <br /> Your{" "}
             <div className="relative inline-block">
               <Image
@@ -18,27 +18,31 @@ const Home = () => {
                 height={20}
                 className="absolute top-0 -right-4"
               />
-              <span className="bg-gradient-to-r from-[#E963FD] via-[#8233C5] to-[#E963FD] text-transparent bg-clip-text drop-shadow-lg">
-                Bookmarks
-              </span>
+              <span className="text-zinc-400">Bookmarks</span>
             </div>
           </h1>
-          <span className="text-gray-700 text-center">
+          <span className="text-white text-center">
             Collaborative bookmark manager for sharing and organizing bookmarks
             across users.
           </span>
 
-          <button className="bg-gray-900 text-white px-4 py-2 rounded-full transition-colors hover:bg-gray-700 text-sm">
+          <button className="bg-white text-black px-4 py-2 rounded-full transition-colors hover:bg-zinc-100 text-sm">
             Install Chrome Extension
           </button>
         </section>
 
         <section>
-          <Image src="/steps.png" alt="" width={640} height={512} />
+          <Image
+            src="/steps.png"
+            alt=""
+            width={640}
+            height={512}
+            className="w-96"
+          />
         </section>
       </div>
       <Footer />
-    </>
+    </section>
   );
 };
 
