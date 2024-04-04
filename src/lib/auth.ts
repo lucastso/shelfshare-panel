@@ -20,12 +20,12 @@ export const authConfig: NextAuthOptions = {
   },
 };
 
-export async function loginIsRequiredServer() {
+export async function LoginIsRequiredServer() {
   const session = await getServerSession(authConfig);
   if (!session) return redirect("/");
 }
 
-export async function loginIsRequiredClient() {
+export async function LoginIsRequiredClient() {
   if (typeof window !== "undefined") {
     const session = useSession();
     const router = useRouter();

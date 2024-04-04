@@ -5,7 +5,7 @@ import AddFolderButton from "@/components/add_folder_button";
 import { FolderProps } from "@/types/folder_props";
 import DeleteButton from "@/components/delete_button";
 import { getServerSession } from "next-auth";
-import { authConfig, loginIsRequiredServer } from "@/lib/auth";
+import { authConfig, LoginIsRequiredServer } from "@/lib/auth";
 import LogOutButton from "@/components/log_out_button";
 import Image from "next/image";
 import SidenavItems from "@/components/sidenav_items";
@@ -16,7 +16,7 @@ export default async function Dashboard() {
   const dataBookmarks: BookmarkProps[] = requestBookmarks.data;
   const dataFolders: FolderProps[] = requestFolders.data;
 
-  await loginIsRequiredServer();
+  await LoginIsRequiredServer();
   const session = await getServerSession(authConfig);
 
   return (
