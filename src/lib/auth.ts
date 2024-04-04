@@ -3,6 +3,13 @@ import GoogleProvider from "next-auth/providers/google";
 import { useSession } from "next-auth/react";
 import { redirect, useRouter } from "next/navigation";
 
+interface User {
+  id?: string;
+  name?: string | null | undefined;
+  email?: string | null | undefined;
+  image?: string | null | undefined;
+}
+
 export const authConfig: NextAuthOptions = {
   providers: [
     GoogleProvider({
@@ -13,7 +20,8 @@ export const authConfig: NextAuthOptions = {
   callbacks: {
     session({ session, token }) {
       if (session.user) {
-        session.user.id = token.sub as string;
+        const user = session.user as User;
+        user.id = token.sub as string;
       }
       return session;
     },
