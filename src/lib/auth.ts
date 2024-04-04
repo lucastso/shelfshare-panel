@@ -26,9 +26,7 @@ export async function LoginIsRequiredServer() {
 }
 
 export async function LoginIsRequiredClient() {
-  if (typeof window !== "undefined") {
-    const session = useSession();
-    const router = useRouter();
-    if (!session) router.push("/");
-  }
+  const session = useSession();
+  const router = useRouter();
+  if (!session) router.push("/");
 }
