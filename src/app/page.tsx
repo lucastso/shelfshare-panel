@@ -7,8 +7,8 @@ const Home = () => {
     <section className="bg-hero">
       <Navbar />
       <div className="mx-auto mb-auto overflow-x-hidden h-screen flex flex-col items-center justify-center space-y-24">
-        <section className="max-w-lg flex flex-col items-center justify-center space-y-4">
-          <h1 className="text-white text-5xl text-center leading-tight font-bold">
+        <section className="xs:max-w-full lg:max-w-lg flex flex-col items-center justify-center space-y-4 xs:px-6 lg:px-0">
+          <h1 className="text-white xs:text-3xl lg:text-5xl text-center leading-tight font-bold">
             Easily Share <br /> Your{" "}
             <div className="relative inline-block">
               <Image
@@ -21,7 +21,7 @@ const Home = () => {
               <span className="text-zinc-400">Bookmarks</span>
             </div>
           </h1>
-          <span className="text-white text-center">
+          <span className="text-zinc-200 text-center lg:text-base xs:text-sm">
             Collaborative bookmark manager for sharing and organizing bookmarks
             across users.
           </span>
@@ -31,7 +31,7 @@ const Home = () => {
           </button>
         </section>
 
-        <section>
+        <section className="xs:px-6 lg:px-0">
           <Image
             src="/steps.png"
             alt=""
