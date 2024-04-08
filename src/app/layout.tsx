@@ -4,8 +4,8 @@ import "./globals.css";
 import Providers from "@/components/providers";
 
 export const metadata: Metadata = {
-  title: "Tabdraw - Collaborative bookmark",
-  description: "Tabdraw - Collaborative bookmark",
+  title: "Shelfshare - Collaborative bookmark",
+  description: "Shelfshare - Collaborative bookmark",
 };
 
 export default function RootLayout({

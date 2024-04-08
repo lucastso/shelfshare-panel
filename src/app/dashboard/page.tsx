@@ -9,6 +9,7 @@ import { authConfig, LoginIsRequiredServer } from "@/lib/auth";
 import LogOutButton from "@/components/log_out_button";
 import Image from "next/image";
 import SidenavItems from "@/components/sidenav_items";
+import AppNavbar from "@/components/app_navbar";
 
 export default async function Dashboard() {
   const requestBookmarks = await api.get("/bookmarks");
@@ -20,19 +21,16 @@ export default async function Dashboard() {
   const session = await getServerSession(authConfig);
 
   return (
-    <section className="h-auto grid grid-cols-8">
-      <div className="col-span-1 bg-red-100 flex flex-col space-y-24 p-8">
-        <Image
-          src="/logo.png"
-          alt=""
-          width={512}
-          height={256}
-          className="w-24"
-        />
+    <section className="mb-auto overflow-x-hidden h-screen text-white">
+      <AppNavbar />
 
-        <SidenavItems />
+      <div className="flex">
+        <div className="w-24 h-full bg-red-900">a</div>
+        <div className="grid grid-cols-12 w-full">
+          <div className="col-span-2 bg-blue-900">b</div>
+          <div className="col-span-10 bg-green-900">c</div>
+        </div>
       </div>
-      <div className="col-span-7 bg-blue-100">b</div>
     </section>
   );
 }

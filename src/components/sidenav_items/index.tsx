@@ -7,15 +7,55 @@ const SidenavItems = () => {
   const path = usePathname();
 
   return (
-    <div className="flex flex-col space-y-4">
+    <div className="flex flex-col space-y-2">
       <Link
         href="/dashboard"
-        className={path == "/dashboard" ? "text-[#8233C5]" : "text-gray-600"}
+        className={`flex items-center gap-4 px-4 py-2 rounded-md ${
+          path == "/dashboard" ? "text-white bg-zinc-900" : "text-zinc-700"
+        }`}
       >
-        Dashboard
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          className="icon icon-tabler icons-tabler-outline icon-tabler-link"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M9 15l6 -6" />
+          <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464" />
+          <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463" />
+        </svg>
       </Link>
-      <Link href="/dashboard" className="">
-        Dashboard
+      <Link
+        href="/info"
+        className={`flex items-center gap-4 px-4 py-2 rounded-md ${
+          path == "/info" ? "text-white bg-zinc-900" : "text-zinc-700"
+        }`}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          className="icon icon-tabler icons-tabler-outline icon-tabler-link"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M9 15l6 -6" />
+          <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464" />
+          <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463" />
+        </svg>
+        <span>Info</span>
       </Link>
     </div>
   );
