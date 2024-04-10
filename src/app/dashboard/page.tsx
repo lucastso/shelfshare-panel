@@ -5,7 +5,7 @@ import SideMenu from "@/components/side_menu";
 import Link from "next/link";
 import FavouritesCategory from "@/components/favourites_category";
 import Image from "next/image";
-import moment from "moment";
+import DeleteButton from "@/components/delete_button";
 
 export default async function Dashboard() {
   const requestBookmarks = await api.get("/bookmarks");
@@ -135,24 +135,7 @@ export default async function Dashboard() {
                 </th>
                 <th className="pb-4 px-4">Category</th>
                 <th className="pb-4 px-4">Folder</th>
-                <th className="pb-4 px-4 flex items-center gap-1 cursor-pointer">
-                  <span>Date</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    className="icon icon-tabler icons-tabler-outline icon-tabler-chevron-down"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M6 9l6 6l6 -6" />
-                  </svg>
-                </th>
+                <th className="pb-4 px-4"></th>
               </tr>
               {dataBookmarks.map((item) => {
                 return (
@@ -163,6 +146,7 @@ export default async function Dashboard() {
                     <td className="h-14 px-4">
                       <Link
                         href={item.url}
+                        title="Clicking will open this page."
                         target="_blank"
                         className="flex items-center gap-3 text-zinc-200"
                       >
@@ -209,12 +193,12 @@ export default async function Dashboard() {
                       </Link>
                     </td>
                     <td className="h-14 px-4">
-                      <div className="px-4 py-3 rounded-md text-blue-400 bg-blue-950 w-fit">
+                      <div className="px-4 py-3 rounded-md text-blue-400 bg-blue-950 w-fit cursor-pointer">
                         Maps
                       </div>
                     </td>
                     <td className="h-14 px-4">
-                      <div className="px-4 py-3 rounded-md text-zinc-600 bg-zinc-950 border border-zinc-800 w-fit flex items-center gap-2">
+                      <div className="px-4 py-3 rounded-md text-zinc-600 bg-zinc-950 border border-zinc-800 w-fit flex items-center gap-2 cursor-pointer">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -234,8 +218,29 @@ export default async function Dashboard() {
                         <span>Add</span>
                       </div>
                     </td>
-                    <td className="h-14 px-4 text-zinc-400">
-                      {moment(item.created_at).format("MMM Do YY")}
+                    <td className="h-14 px-4 text-zinc-400 flex items-center gap-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        className="icon icon-tabler icons-tabler-outline icon-tabler-edit opacity-75 hover:opacity-100 cursor-pointer transition-all"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+                        <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+                        <path d="M16 5l3 3" />
+                      </svg>
+                      <DeleteButton
+                        type="bookmarks"
+                        key={item.id}
+                        id={item.id}
+                      />
                     </td>
                   </tr>
                 );

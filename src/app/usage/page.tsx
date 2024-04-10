@@ -1,5 +1,6 @@
 import AppNavbar from "@/components/app_navbar";
 import SideMenu from "@/components/side_menu";
+import Image from "next/image";
 import Link from "next/link";
 
 export default async function Usage() {
@@ -26,6 +27,14 @@ export default async function Usage() {
           </span>
 
           <span className="font-semibold text-lg">Like this...</span>
+
+          <Image
+            src="/help.png"
+            alt=""
+            width={512}
+            height={256}
+            className="self-center w-[40rem] py-8"
+          />
 
           <span>
             Following these steps, you're almost done to manage your bookmarks.
