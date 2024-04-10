@@ -1,7 +1,22 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 const SideMenu = () => {
+  const pathname = usePathname();
+
+  const active =
+    "bg-zinc-900 text-zinc-200 text-sm px-4 py-3 rounded-md flex items-center cursor-pointer mb-2 gap-2";
+  const inactive =
+    "transition-all hover:bg-zinc-950 hover:text-zinc-400 text-zinc-500 text-sm px-4 py-3 rounded-md flex items-center cursor-pointer mb-2 gap-2";
+
   return (
     <div className="col-span-2 pr-4 py-4">
-      <div className="bg-zinc-900 text-zinc-200 text-sm px-4 py-3 rounded-md flex items-center cursor-pointer mb-2 gap-2">
+      <Link
+        href="/dashboard"
+        className={pathname == "/dashboard" ? active : inactive}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -21,9 +36,12 @@ const SideMenu = () => {
           <path d="M15 4h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1" />
         </svg>
         <span>Bookmarks</span>
-      </div>
+      </Link>
 
-      <div className="transition-all hover:bg-zinc-950 hover:text-zinc-400 text-zinc-500 text-sm px-4 py-3 rounded-md flex items-center cursor-pointer mb-2 gap-2">
+      <Link
+        href="/folders"
+        className={pathname == "/folders" ? active : inactive}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -41,9 +59,9 @@ const SideMenu = () => {
           <path d="M17 17v2a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2h2" />
         </svg>
         <span>Folders</span>
-      </div>
+      </Link>
 
-      <div className="transition-all hover:bg-zinc-950 hover:text-zinc-400 text-zinc-500 text-sm px-4 py-3 rounded-md flex items-center cursor-pointer mb-2 gap-2">
+      <Link href="/usage" className={pathname == "/usage" ? active : inactive}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -62,9 +80,9 @@ const SideMenu = () => {
           <path d="M12 13.5a1.5 1.5 0 0 1 1 -1.5a2.6 2.6 0 1 0 -3 -4" />
         </svg>
         <span>Usage</span>
-      </div>
+      </Link>
 
-      <div className="transition-all hover:bg-zinc-950 hover:text-zinc-400 text-zinc-500 text-sm px-4 py-3 rounded-md flex items-center cursor-pointer mb-2 gap-2">
+      <Link href="/about" className={pathname == "/about" ? active : inactive}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -83,7 +101,7 @@ const SideMenu = () => {
           <path d="M11 12h1v4h1" />
         </svg>
         <span>About</span>
-      </div>
+      </Link>
     </div>
   );
 };
