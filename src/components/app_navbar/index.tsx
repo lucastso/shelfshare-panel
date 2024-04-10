@@ -1,5 +1,3 @@
-"use client";
-
 import { LoginIsRequiredClient, authConfig } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
