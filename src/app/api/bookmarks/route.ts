@@ -1,5 +1,4 @@
 import { prisma } from "@/lib/prisma";
-import { NextRequest } from "next/server";
 
 export async function GET() {
   const bookmarks = await prisma.bookmark.findMany({
@@ -11,7 +10,7 @@ export async function GET() {
   return Response.json(bookmarks);
 }
 
-export async function POST(request: NextRequest) {
+export async function POST(request: Request) {
   const data = await request.json();
   const { user_id, folder_id, url, name, color, icon } = data;
 
@@ -29,12 +28,12 @@ export async function POST(request: NextRequest) {
   return Response.json(bookmark);
 }
 
-export async function DELETE(request: NextRequest) {
-  const searchParams = request.nextUrl.searchParams;
+export async function DELETE(request: Request) {
+  const { searchParams } = new URL(request.url);
   const id = searchParams.get("id");
 
   await prisma.bookmark.delete({
-    where: { id: id },
+    where: { id: Number(id) },
   });
 
   return Response.json("deleted");

@@ -5,7 +5,8 @@ const nextConfig = {
       "lh3.googleusercontent.com",
       "cdn.oaistatic.com",
       "blog.logrocket.com",
-      "",
+      "nextjs.org",
+      "cdn.sanity.io",
     ],
   },
 };

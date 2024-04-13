@@ -1,11 +1,14 @@
 "use client";
 
 import { api } from "@/lib/axios";
+import { useRouter } from "next/navigation";
 
 const DeleteButton = ({ id, type }: { id: number; type: string }) => {
+  const route = useRouter();
   const handleDelete = (id: number, type: string) => {
-    // api.delete(`/${type}?id=${id}`);
-    api.delete(`/${type}`);
+    api.delete(`/${type}?id=${id}`).then(() => {
+      route.refresh();
+    });
   };
 
   return (
