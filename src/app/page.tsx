@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const Home = () => {
   return (
-    <section className="max-w-7xl mx-auto flex flex-col items-center justify-between h-screen">
+    <section className="max-w-screen-xl mx-auto flex flex-col items-center justify-between h-screen">
       <Navbar />
       <div className="flex xs:flex-col lg:flex-row items-center justify-between xs:space-y-12 lg:space-y-0">
         <section className="flex flex-col items-start space-y-4 xs:px-6 lg:px-0">
