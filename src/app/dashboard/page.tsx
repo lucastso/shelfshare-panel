@@ -6,23 +6,18 @@ import Link from "next/link";
 import FavouritesCategory from "@/components/favourites_category";
 import Image from "next/image";
 import DeleteButton from "@/components/delete_button";
+import FavouriteButton from "@/components/favourite_button";
+import { CategoryProps } from "@/types/category_props";
 
 export default async function Dashboard() {
   const requestBookmarks = await api.get("/bookmarks");
+  const requestCategories = await api.get("/categories");
   const dataBookmarks: BookmarkProps[] = requestBookmarks.data;
+  const dataCategories: CategoryProps[] = requestCategories.data;
 
-  const categories = [
-    {
-      name: "Maps",
-      background: "rgb(23, 37, 84)",
-      text: "rgb(96, 165, 250)",
-    },
-    {
-      name: "Homework",
-      background: "rgb(26, 46, 5)",
-      text: "rgb(190, 242, 100)",
-    },
-  ];
+  const favourites = dataBookmarks.filter(
+    (item) => item.favourite == true
+  ).length;
 
   return (
     <section className="mb-auto overflow-x-hidden text-white xs:w-full lg:max-w-screen-xl mx-auto">
@@ -34,9 +29,9 @@ export default async function Dashboard() {
           <span>Your Board</span>
 
           <div className="flex flex-col space-y-2">
-            <FavouritesCategory />
+            <FavouritesCategory size={favourites} />
 
-            {categories.map((category) => {
+            {dataCategories.map((category) => {
               return (
                 <div
                   className="text-sm px-4 py-3 rounded-md flex items-center justify-between cursor-pointer"
@@ -144,58 +139,79 @@ export default async function Dashboard() {
                     className="text-sm opacity-75 hover:opacity-100 transition-colors group"
                   >
                     <td className="h-14 px-4">
-                      <Link
-                        href={item.url}
+                      <div
                         title="Clicking will open this page."
-                        target="_blank"
                         className="flex items-center gap-3 text-zinc-200"
                       >
-                        <Image
-                          src={item.icon}
-                          alt=""
-                          width={512}
-                          height={256}
-                          className="w-6 rounded-md"
+                        <Link
+                          href={item.url}
+                          target="_blank"
+                          className="flex items-center gap-3 text-zinc-200"
+                        >
+                          <Image
+                            src={item.icon}
+                            alt=""
+                            width={512}
+                            height={256}
+                            className="w-6 rounded-md"
+                          />
+                          <span>
+                            {item.name.length > 25
+                              ? item.name.slice(0, 25) + "..."
+                              : item.name}
+                          </span>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            className="icon icon-tabler icons-tabler-outline icon-tabler-link text-blue-500"
+                          >
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M9 15l6 -6" />
+                            <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464" />
+                            <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463" />
+                          </svg>
+                        </Link>
+                        <FavouriteButton
+                          id={item.id}
+                          favourite={item.favourite}
                         />
-                        <span>
-                          {item.name.length > 25
-                            ? item.name.slice(0, 25) + "..."
-                            : item.name}
-                        </span>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          className="icon icon-tabler icons-tabler-outline icon-tabler-link text-blue-500"
-                        >
-                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                          <path d="M9 15l6 -6" />
-                          <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464" />
-                          <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463" />
-                        </svg>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                          className="icon icon-tabler icons-tabler-filled icon-tabler-star text-yellow-700 opacity-0 group-hover:opacity-100 hover:text-yellow-400 transition-colors"
-                        >
-                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                          <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
-                        </svg>
-                      </Link>
+                      </div>
                     </td>
                     <td className="h-14 px-4">
-                      <div className="px-4 py-3 rounded-md text-blue-400 bg-blue-950 w-fit cursor-pointer">
-                        Maps
-                      </div>
+                      {item.category_id == 0 ||
+                      item.category_id == undefined ||
+                      item.category_id == null ? (
+                        <div className="px-4 py-3 rounded-md text-zinc-600 bg-zinc-950 border border-zinc-800 w-fit flex items-center gap-2 cursor-pointer">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            className="icon icon-tabler icons-tabler-outline icon-tabler-plus"
+                          >
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M12 5l0 14" />
+                            <path d="M5 12l14 0" />
+                          </svg>
+                          <span>Add</span>
+                        </div>
+                      ) : (
+                        <div className="px-4 py-3 rounded-md text-zinc-600 bg-zinc-950 border border-zinc-800 w-fit flex items-center gap-2 cursor-pointer">
+                          Category
+                        </div>
+                      )}
                     </td>
                     <td className="h-14 px-4">
                       <div className="px-4 py-3 rounded-md text-zinc-600 bg-zinc-950 border border-zinc-800 w-fit flex items-center gap-2 cursor-pointer">

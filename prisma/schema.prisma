@@ -17,20 +17,31 @@ model User {
 }
 
 model Bookmark {
-  id         Int      @id @default(autoincrement())
-  user_id    String
-  folder_id  Int
-  url        String
-  name       String
-  color      String
-  icon       String
-  created_at DateTime @default(now())
+  id          Int      @id @default(autoincrement())
+  user_id     String
+  folder_id   Int
+  category_id Int @default(0)
+  url         String
+  name        String
+  icon        String
+  favourite   Boolean  @default(false)
+  created_at  DateTime @default(now())
 }
 
 model Folder {
   id         Int      @id @default(autoincrement())
   creator_id String
   collabs_id String[]
+  color      String
   name       String
+  created_at DateTime @default(now())
+}
+
+model Category {
+  id         Int      @id @default(autoincrement())
+  creator_id String
+  name       String
+  background String
+  text       String
   created_at DateTime @default(now())
 }

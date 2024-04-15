@@ -2,9 +2,14 @@ import { prisma } from "@/lib/prisma";
 
 export async function GET() {
   const bookmarks = await prisma.bookmark.findMany({
-    orderBy: {
-      created_at: "desc",
-    },
+    orderBy: [
+      {
+        favourite: "desc",
+      },
+      {
+        created_at: "desc",
+      },
+    ],
   });
 
   return Response.json(bookmarks);
@@ -12,7 +17,7 @@ export async function GET() {
 
 export async function POST(request: Request) {
   const data = await request.json();
-  const { user_id, folder_id, url, name, color, icon } = data;
+  const { user_id, folder_id, url, name, icon } = data;
 
   const bookmark = await prisma.bookmark.create({
     data: {
@@ -20,7 +25,6 @@ export async function POST(request: Request) {
       folder_id,
       url,
       name,
-      color,
       icon,
     },
   });

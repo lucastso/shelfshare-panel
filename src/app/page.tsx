@@ -1,6 +1,7 @@
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import Image from "next/image";
+import Link from "next/link";
 
 const Home = () => {
   return (
@@ -26,9 +27,22 @@ const Home = () => {
             across users.
           </span>
 
-          <button className="bg-white text-black px-4 py-2 rounded-full transition-colors hover:bg-zinc-100 text-sm">
-            Install Chrome Extension
-          </button>
+          <div className="flex items-center gap-2">
+            <Link
+              href="#"
+              target="_blank"
+              className="bg-white text-black px-4 py-2 rounded-full transition-colors hover:bg-zinc-100 text-sm"
+            >
+              Install Chrome Extension
+            </Link>
+            <Link
+              href="https://github.com/lucastso/shelfshare-panel"
+              target="_blank"
+              className="bg-black border border-zinc-100 text-white px-4 py-2 rounded-full transition-colors hover:bg-zinc-950 text-sm"
+            >
+              Star us on Github
+            </Link>
+          </div>
         </section>
 
         <section className="xs:px-6 lg:px-0">
