@@ -4,11 +4,11 @@ import Image from "next/image";
 
 const Home = () => {
   return (
-    <section className="bg-hero">
+    <section className="max-w-7xl mx-auto flex flex-col items-center justify-between h-screen">
       <Navbar />
-      <div className="mx-auto mb-auto overflow-x-hidden h-screen flex flex-col items-center justify-center space-y-24">
-        <section className="xs:max-w-full lg:max-w-lg flex flex-col items-center justify-center space-y-4 xs:px-6 lg:px-0">
-          <h1 className="text-white xs:text-3xl lg:text-5xl text-center leading-tight font-bold">
+      <div className="flex xs:flex-col lg:flex-row items-center justify-between xs:space-y-12 lg:space-y-0">
+        <section className="flex flex-col items-start space-y-4 xs:px-6 lg:px-0">
+          <h1 className="text-white xs:text-3xl lg:text-5xl font-bold">
             Easily Share <br /> Your{" "}
             <div className="relative inline-block">
               <Image
@@ -21,7 +21,7 @@ const Home = () => {
               <span className="text-zinc-400">Bookmarks</span>
             </div>
           </h1>
-          <span className="text-zinc-200 text-center lg:text-base xs:text-sm">
+          <span className="text-zinc-200 lg:text-base xs:text-sm xs:w-full lg:w-3/4">
             Collaborative bookmark manager for sharing and organizing bookmarks
             across users.
           </span>
