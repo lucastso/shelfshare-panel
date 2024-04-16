@@ -11,3 +11,14 @@ export async function GET() {
 
   return Response.json(categories);
 }
+
+export async function DELETE(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get("id");
+
+  await prisma.category.delete({
+    where: { id: Number(id) },
+  });
+
+  return Response.json("deleted");
+}
