@@ -103,7 +103,7 @@ export default async function Dashboard() {
                           target="_blank"
                           className="flex items-center gap-3 text-zinc-200"
                         >
-                          <Image
+                          <img
                             src={item.icon}
                             alt=""
                             width={512}
