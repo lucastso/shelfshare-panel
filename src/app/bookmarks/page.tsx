@@ -4,7 +4,6 @@ import AppNavbar from "@/components/app_navbar";
 import SideMenu from "@/components/side_menu";
 import Link from "next/link";
 import FavouritesCategory from "@/components/favourites_category";
-import Image from "next/image";
 import DeleteButton from "@/components/delete_button";
 import FavouriteButton from "@/components/favourite_button";
 import { CategoryProps } from "@/types/category_props";
@@ -48,9 +47,9 @@ export default async function Dashboard() {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 className="icon icon-tabler icons-tabler-outline icon-tabler-plus"
               >
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -74,9 +73,9 @@ export default async function Dashboard() {
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     className="icon icon-tabler icons-tabler-outline icon-tabler-chevron-down"
                   >
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -122,9 +121,9 @@ export default async function Dashboard() {
                             viewBox="0 0 24 24"
                             fill="none"
                             stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                             className="icon icon-tabler icons-tabler-outline icon-tabler-link text-blue-500"
                           >
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -140,13 +139,17 @@ export default async function Dashboard() {
                       </div>
                     </td>
                     <td className="h-14 px-4 z-10">
-                      {item.category_id == 0 ||
-                      item.category_id == undefined ||
-                      item.category_id == null ? (
+                      {item.categoryId == 0 || item.categoryId == null ? (
                         <AddCategoryButton dataCategories={dataCategories} />
                       ) : (
-                        <div className="px-4 py-3 rounded-md text-zinc-600 bg-zinc-950 border border-zinc-800 w-fit flex items-center gap-2 cursor-pointer">
-                          Category
+                        <div
+                          className="px-4 py-3 rounded-md w-fit flex items-center gap-2 cursor-pointer"
+                          style={{
+                            backgroundColor: item.category.backgroundColor,
+                            color: item.category.textColor,
+                          }}
+                        >
+                          {item.category.name}
                         </div>
                       )}
                     </td>
@@ -159,9 +162,9 @@ export default async function Dashboard() {
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           className="icon icon-tabler icons-tabler-outline icon-tabler-plus"
                         >
                           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -179,9 +182,9 @@ export default async function Dashboard() {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         className="icon icon-tabler icons-tabler-outline icon-tabler-edit opacity-75 hover:opacity-100 cursor-pointer transition-all"
                       >
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />

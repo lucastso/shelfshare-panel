@@ -16,14 +16,14 @@ const AddCategoryButton = ({
       className="px-4 py-3 rounded-md text-zinc-600 bg-zinc-950 border border-zinc-800 w-fit flex items-center gap-2 cursor-pointer relative"
     >
       {opened && dataCategories.length != 0 ? (
-        <div className="px-4 py-3 absolute -bottom-10 rounded-md bg-zinc-950 border border-zinc-800 -right-24 z-50 flex flex-col items-start justify-start">
+        <div className="px-4 py-3 absolute -bottom-10 rounded-md bg-zinc-950 border border-zinc-800 -right-24 z-50 flex flex-col gap-2 items-start justify-start">
           {dataCategories.map((category) => {
             return (
               <div
                 className="text-sm px-4 py-3 rounded-md flex items-center gap-2 cursor-pointer"
                 style={{
-                  background: category.background,
-                  color: category.text,
+                  background: category.backgroundColor,
+                  color: category.textColor,
                 }}
                 key={category.name}
               >
@@ -34,9 +34,9 @@ const AddCategoryButton = ({
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   className="icon icon-tabler icons-tabler-outline icon-tabler-tags"
                 >
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -59,9 +59,9 @@ const AddCategoryButton = ({
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         className="icon icon-tabler icons-tabler-outline icon-tabler-plus"
       >
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />

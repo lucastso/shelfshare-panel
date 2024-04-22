@@ -1,8 +1,8 @@
 export interface CategoryProps {
   id: number;
-  creator_id: string;
+  creatorIdd: string;
   name: string;
-  background: string;
-  text: string;
+  backgroundColor: string;
+  textColor: string;
   created_at: string;
 }

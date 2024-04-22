@@ -1,8 +1,8 @@
 export interface FolderProps {
   id: number;
-  creator_id: string;
-  collabs_id: string[];
+  creatorId: string;
+  collabsId: string[];
   color: string;
   name: string;
-  created_at: string;
+  createdAt: string;
 }

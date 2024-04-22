@@ -9,7 +9,7 @@ const AppNavbar = async () => {
 
   return (
     <nav className="py-3 flex items-center justify-between">
-      <Image src="/logo.png" alt="" width={512} height={256} className="w-32" />
+      <Image src="/logo.png" alt="" width={512} height={256} className="w-24" />
 
       <AppNavbarUserInfo
         image={session?.user?.image as string}

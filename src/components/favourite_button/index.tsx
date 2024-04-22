@@ -12,7 +12,7 @@ const FavouriteButton = ({
 }) => {
   const route = useRouter();
   const handleFavouriteBookmark = () => {
-    api.post(`/bookmarks/favourite?id=${id}`).then(() => {
+    api.post(`/bookmarks/favourite/${id}`).then(() => {
       route.refresh();
     });
   };

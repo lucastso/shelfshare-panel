@@ -6,7 +6,7 @@ const SignInButton = () => {
   const handleSignIn = async () => {
     await signIn("google", {
       redirect: true,
-      callbackUrl: "/dashboard",
+      callbackUrl: "/bookmarks",
     });
   };
 

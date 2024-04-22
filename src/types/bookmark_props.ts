@@ -1,11 +1,18 @@
 export interface BookmarkProps {
   id: number;
-  user_id: string;
-  folder_id: number;
-  category_id: number;
+  userId: string;
+  folderId: number;
+  categoryId: number;
   url: string;
   name: string;
   favourite: boolean;
   icon: string;
-  created_at: string;
+  createdAt: string;
+  category: {
+    id: number;
+    name: string;
+    backgroundColor: string;
+    textColor: string;
+    createdAt: string;
+  };
 }

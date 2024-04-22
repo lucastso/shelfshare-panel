@@ -11,7 +11,7 @@ const ItemsCategory = ({ category }: { category: CategoryProps }) => {
 
   const route = useRouter();
   const handleDelete = (id: number) => {
-    api.delete(`/categories?id=${id}`).then(() => {
+    api.delete(`/categories/${id}`).then(() => {
       route.refresh();
     });
   };
@@ -20,8 +20,8 @@ const ItemsCategory = ({ category }: { category: CategoryProps }) => {
     <div
       className="text-sm px-4 py-3 rounded-md flex items-center justify-between cursor-pointer"
       style={{
-        background: category.background,
-        color: category.text,
+        background: category.backgroundColor,
+        color: category.textColor,
       }}
       key={category.id}
     >
@@ -33,9 +33,9 @@ const ItemsCategory = ({ category }: { category: CategoryProps }) => {
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
           className="icon icon-tabler icons-tabler-outline icon-tabler-tags"
         >
           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -63,9 +63,9 @@ const ItemsCategory = ({ category }: { category: CategoryProps }) => {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 className="icon icon-tabler icons-tabler-outline icon-tabler-user-scan"
               >
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -89,9 +89,9 @@ const ItemsCategory = ({ category }: { category: CategoryProps }) => {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 className="icon icon-tabler icons-tabler-outline icon-tabler-trash opacity-75 hover:opacity-100 cursor-pointer transition-all"
               >
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -112,9 +112,9 @@ const ItemsCategory = ({ category }: { category: CategoryProps }) => {
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
           className="icon icon-tabler icons-tabler-outline icon-tabler-dots-vertical"
         >
           <path stroke="none" d="M0 0h24v24H0z" fill="none" />

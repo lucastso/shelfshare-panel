@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 const DeleteButton = ({ id, type }: { id: number; type: string }) => {
   const route = useRouter();
   const handleDelete = (id: number, type: string) => {
-    api.delete(`/${type}?id=${id}`).then(() => {
+    api.delete(`/${type}/${id}`).then(() => {
       route.refresh();
     });
   };
@@ -20,9 +20,9 @@ const DeleteButton = ({ id, type }: { id: number; type: string }) => {
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         className="icon icon-tabler icons-tabler-outline icon-tabler-trash opacity-75 hover:opacity-100 cursor-pointer transition-all"
       >
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />

@@ -1,38 +1,18 @@
 "use client";
 
+import { api } from "@/lib/axios";
 import { ChangeEvent, useState } from "react";
 
-const CategoryAddInfo = async ({ userId }: { userId: string }) => {
-  const [backgroundColor, setBackgroundColor] = useState<string>("");
+const CategoryAddInfo = ({ userId }: { userId: string }) => {
+  const [error, setError] = useState<string>("");
   const [textColor, setTextColor] = useState<string>("");
+  const [backgroundColor, setBackgroundColor] = useState<string>("");
   const [formData, setFormData] = useState({
-    name: textColor,
-    background: backgroundColor,
-    text: "",
+    creatorId: userId,
+    name: "",
+    backgroundColor: "",
+    textColor: "",
   });
-
-  const [formValid, setFormValid] = useState(false);
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-
-    const isFormValid = Object.values({
-      ...formData,
-      [name]: value,
-    }).every((field) => {
-      if (typeof field === "string") {
-        return field.trim() !== "";
-      }
-      return false;
-    });
-
-    setFormValid(isFormValid);
-  };
 
   const colors = [
     "rgb(226 232 240)",
@@ -199,8 +179,28 @@ const CategoryAddInfo = async ({ userId }: { userId: string }) => {
     "rgb(76 5 25)",
   ];
 
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = () => {
+    if (Object.values(formData).every((value) => value !== "")) {
+      api.post("/categories", formData).then(() => {
+        setError("");
+      });
+    } else {
+      setError("All fields are required!");
+    }
+  };
+
   return (
     <div className="space-y-8 w-full">
+      <strong className="text-red-500">{error}</strong>
       <div className="flex flex-col gap-2">
         <label htmlFor="name">Name:</label>
         <input
@@ -209,7 +209,7 @@ const CategoryAddInfo = async ({ userId }: { userId: string }) => {
           name="name"
           value={formData.name}
           onChange={handleChange}
-          placeholder="Your name"
+          placeholder="Category name"
           className="rounded-md border border-zinc-900 bg-black px-2 py-2 focus:border-zinc-800 focus:outline-none"
         />
       </div>
@@ -220,8 +220,14 @@ const CategoryAddInfo = async ({ userId }: { userId: string }) => {
           {colors.map((item) => {
             return (
               <div
-                onClick={() => setBackgroundColor(item)}
-                className="w-full h-10 rounded-md cursor-pointer"
+                key={item}
+                onClick={() => {
+                  formData.backgroundColor = item;
+                  setBackgroundColor(item);
+                }}
+                className={`w-full h-10 rounded-md cursor-pointer ${
+                  backgroundColor === item ? "border" : ""
+                }`}
                 style={{
                   background: item,
                 }}
@@ -237,8 +243,14 @@ const CategoryAddInfo = async ({ userId }: { userId: string }) => {
           {colors.map((item) => {
             return (
               <div
-                onClick={() => setTextColor(item)}
-                className="w-full h-10 rounded-md cursor-pointer font-light"
+                key={item}
+                onClick={() => {
+                  formData.textColor = item;
+                  setTextColor(item);
+                }}
+                className={`w-full h-10 rounded-md cursor-pointer font-light text-center flex items-center justify-center ${
+                  textColor === item ? "border" : ""
+                }`}
                 style={{
                   color: item,
                 }}
@@ -250,7 +262,10 @@ const CategoryAddInfo = async ({ userId }: { userId: string }) => {
         </div>
       </div>
 
-      <button className="bg-zinc-900 text-zinc-400 text-sm px-4 py-3 rounded-md flex items-center cursor-pointer gap-2 relative">
+      <button
+        onClick={() => handleSubmit()}
+        className="bg-zinc-900 text-zinc-400 text-sm px-4 py-3 rounded-md flex items-center cursor-pointer gap-2 relative"
+      >
         Send
       </button>
     </div>

@@ -1,6 +1,5 @@
 import AppNavbar from "@/components/app_navbar";
 import CategoryAddInfo from "@/components/category_add_info";
-import ProfileChangeInfo from "@/components/profile_change_info";
 import SideMenu from "@/components/side_menu";
 import { LoginIsRequiredServer, authConfig } from "@/lib/auth";
 import { getServerSession } from "next-auth";
