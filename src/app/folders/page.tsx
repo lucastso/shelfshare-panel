@@ -4,6 +4,7 @@ import SideMenu from "@/components/side_menu";
 import { FolderProps } from "@/types/folder_props";
 import { LoginIsRequiredServer, authConfig } from "@/lib/auth";
 import { getServerSession } from "next-auth";
+import Link from "next/link";
 
 export default async function Folders() {
   const requestFolders = await api.get("/folders");
@@ -19,6 +20,31 @@ export default async function Folders() {
       <div className="grid grid-cols-12">
         <SideMenu />
         <div className="col-span-10 pl-4 py-4">
+          <div className="flex items-center justify-between mb-8">
+            <span>Folders</span>
+            <Link
+              href="/folders/add"
+              className="bg-zinc-950 border border-zinc-900 text-zinc-400 text-sm px-4 py-3 rounded-md flex items-center justify-center cursor-pointer space-x-2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="icon icon-tabler icons-tabler-outline icon-tabler-plus"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M12 5l0 14" />
+                <path d="M5 12l14 0" />
+              </svg>
+              <span>Add Folder</span>
+            </Link>
+          </div>
           <table className="text-left w-full">
             <tbody>
               <tr>

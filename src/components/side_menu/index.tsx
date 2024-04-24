@@ -15,7 +15,7 @@ const SideMenu = () => {
     <div className="col-span-2 pr-4 py-4">
       <Link
         href="/bookmarks"
-        className={pathname == "/bookmarks" ? active : inactive}
+        className={pathname.includes("/bookmarks") ? active : inactive}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -40,7 +40,7 @@ const SideMenu = () => {
 
       <Link
         href="/folders"
-        className={pathname == "/folders" ? active : inactive}
+        className={pathname.includes("/folders") ? active : inactive}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -59,6 +59,30 @@ const SideMenu = () => {
           <path d="M17 17v2a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2h2" />
         </svg>
         <span>Folders</span>
+      </Link>
+
+      <Link
+        href="/categories"
+        className={pathname.includes("/categories") ? active : inactive}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="icon icon-tabler icons-tabler-outline icon-tabler-tag-starred"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M7.5 7.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+          <path d="M3 6v5.172a2 2 0 0 0 .586 1.414l7.71 7.71a2.41 2.41 0 0 0 3.408 0l5.592 -5.592a2.41 2.41 0 0 0 0 -3.408l-7.71 -7.71a2 2 0 0 0 -1.414 -.586h-5.172a3 3 0 0 0 -3 3z" />
+          <path d="M12.5 13.847l-1.5 1.153l.532 -1.857l-1.532 -1.143h1.902l.598 -1.8l.598 1.8h1.902l-1.532 1.143l.532 1.857z" />
+        </svg>
+        <span>Categories</span>
       </Link>
 
       <Link href="/usage" className={pathname == "/usage" ? active : inactive}>

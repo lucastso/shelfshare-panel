@@ -140,7 +140,10 @@ export default async function Dashboard() {
                     </td>
                     <td className="h-14 px-4 z-10">
                       {item.categoryId == 0 || item.categoryId == null ? (
-                        <AddCategoryButton dataCategories={dataCategories} />
+                        <AddCategoryButton
+                          bookmarkId={item.id}
+                          dataCategories={dataCategories}
+                        />
                       ) : (
                         <div
                           className="px-4 py-3 rounded-md w-fit flex items-center gap-2 cursor-pointer"

@@ -1,14 +1,27 @@
 "use client";
 
+import { api } from "@/lib/axios";
 import { CategoryProps } from "@/types/category_props";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const AddCategoryButton = ({
+  bookmarkId,
   dataCategories,
 }: {
+  bookmarkId: number;
   dataCategories: CategoryProps[];
 }) => {
+  const router = useRouter();
   const [opened, setOpened] = useState<boolean>(false);
+
+  const handleAddCategory = async (id: number, categoryId: number) => {
+    await api
+      .post(`/bookmarks/category/add/${id}`, { categoryId: categoryId })
+      .then(() => {
+        router.refresh();
+      });
+  };
 
   return (
     <div
@@ -20,6 +33,7 @@ const AddCategoryButton = ({
           {dataCategories.map((category) => {
             return (
               <div
+                onClick={() => handleAddCategory(bookmarkId, category.id)}
                 className="text-sm px-4 py-3 rounded-md flex items-center gap-2 cursor-pointer"
                 style={{
                   background: category.backgroundColor,
