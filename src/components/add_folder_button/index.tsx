@@ -1,23 +1,23 @@
 "use client";
 
 import { api } from "@/lib/axios";
-import { CategoryProps } from "@/types/category_props";
+import { FolderProps } from "@/types/folder_props";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const AddCategoryButton = ({
-  bookmarkId,
-  dataCategories,
+const AddFolderButton = ({
+  folderId,
+  dataFolders,
 }: {
-  bookmarkId: number;
-  dataCategories: CategoryProps[];
+  folderId: number;
+  dataFolders: FolderProps[];
 }) => {
   const router = useRouter();
   const [opened, setOpened] = useState<boolean>(false);
 
-  const handleAddCategory = async (id: number, categoryId: number) => {
+  const handleAddFolder = async (id: number, folderId: number) => {
     await api
-      .post(`/bookmarks/category/add/${id}`, { categoryId: categoryId })
+      .post(`/bookmarks/folder/add/${id}`, { folderId: folderId })
       .then(() => {
         router.refresh();
       });
@@ -28,17 +28,13 @@ const AddCategoryButton = ({
       onClick={() => setOpened((opened) => !opened)}
       className="px-4 py-3 rounded-md text-zinc-600 bg-zinc-950 border border-zinc-800 w-fit flex items-center gap-2 cursor-pointer relative"
     >
-      {opened && dataCategories.length != 0 ? (
+      {opened && dataFolders.length != 0 ? (
         <div className="px-4 py-3 absolute top-4 rounded-md bg-zinc-950 border border-zinc-800 left-12 z-50 flex flex-col gap-2 items-start justify-start">
-          {dataCategories.map((category) => {
+          {dataFolders.map((category) => {
             return (
               <div
-                onClick={() => handleAddCategory(bookmarkId, category.id)}
-                className="text-sm px-4 py-3 rounded-md flex items-center gap-2 cursor-pointer"
-                style={{
-                  background: category.backgroundColor,
-                  color: category.textColor,
-                }}
+                onClick={() => handleAddFolder(folderId, category.id)}
+                className="text-sm px-4 py-3 rounded-md flex items-center gap-2 cursor-pointer text-zinc-400 bg-zinc-900 border border-zinc-800"
                 key={category.name}
               >
                 <svg
@@ -87,4 +83,4 @@ const AddCategoryButton = ({
   );
 };
 
-export default AddCategoryButton;
+export default AddFolderButton;

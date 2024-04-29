@@ -9,12 +9,18 @@ import FavouriteButton from "@/components/favourite_button";
 import { CategoryProps } from "@/types/category_props";
 import AddCategoryButton from "@/components/add_category_button";
 import ItemsCategory from "@/components/item_categories";
+import BookmarkCategory from "@/components/bookmark_category";
+import BookmarkFolder from "@/components/bookmark_folder";
+import AddFolderButton from "@/components/add_folder_button";
+import { FolderProps } from "@/types/folder_props";
 
 export default async function Dashboard() {
   const requestBookmarks = await api.get("/bookmarks");
   const requestCategories = await api.get("/categories");
+  const requestFolders = await api.get("/folders");
   const dataBookmarks: BookmarkProps[] = requestBookmarks.data;
   const dataCategories: CategoryProps[] = requestCategories.data;
+  const dataFolders: FolderProps[] = requestFolders.data;
 
   const favourites = dataBookmarks.filter(
     (item) => item.favourite == true
@@ -144,43 +150,24 @@ export default async function Dashboard() {
                         </div>
                       </td>
                       <td className="h-14 px-4 z-10">
-                        {item.categoryId == 0 || item.categoryId == null ? (
+                        {item.categoryId == null ? (
                           <AddCategoryButton
                             bookmarkId={item.id}
                             dataCategories={dataCategories}
                           />
                         ) : (
-                          <div
-                            className="px-4 py-3 rounded-md w-fit flex items-center gap-2 cursor-pointer"
-                            style={{
-                              backgroundColor: item.category.backgroundColor,
-                              color: item.category.textColor,
-                            }}
-                          >
-                            {item.category.name}
-                          </div>
+                          <BookmarkCategory item={item} />
                         )}
                       </td>
                       <td className="h-14 px-4 z-10">
-                        <div className="px-4 py-3 rounded-md text-zinc-600 bg-zinc-950 border border-zinc-800 w-fit flex items-center gap-2 cursor-pointer">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="icon icon-tabler icons-tabler-outline icon-tabler-plus"
-                          >
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M12 5l0 14" />
-                            <path d="M5 12l14 0" />
-                          </svg>
-                          <span>Add</span>
-                        </div>
+                        {item.folderId == null ? (
+                          <AddFolderButton
+                            folderId={item.id}
+                            dataFolders={dataFolders}
+                          />
+                        ) : (
+                          <BookmarkFolder item={item} />
+                        )}
                       </td>
                       <td className="h-14 px-4 text-zinc-400 flex items-center gap-2">
                         <svg

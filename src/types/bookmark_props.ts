@@ -15,4 +15,11 @@ export interface BookmarkProps {
     textColor: string;
     createdAt: string;
   };
+  folder: {
+    id: number;
+    creatorId: string;
+    collabsId: string[];
+    name: string;
+    createdAt: string;
+  };
 }
