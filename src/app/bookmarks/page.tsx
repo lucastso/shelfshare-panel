@@ -4,7 +4,6 @@ import AppNavbar from "@/components/app_navbar";
 import SideMenu from "@/components/side_menu";
 import Link from "next/link";
 import FavouritesCategory from "@/components/favourites_category";
-import DeleteButton from "@/components/delete_button";
 import FavouriteButton from "@/components/favourite_button";
 import { CategoryProps } from "@/types/category_props";
 import AddCategoryButton from "@/components/add_category_button";
@@ -13,6 +12,7 @@ import BookmarkCategory from "@/components/bookmark_category";
 import BookmarkFolder from "@/components/bookmark_folder";
 import AddFolderButton from "@/components/add_folder_button";
 import { FolderProps } from "@/types/folder_props";
+import DeleteButton from "@/components/delete_button";
 
 export default async function Dashboard() {
   const requestBookmarks = await api.get("/bookmarks");
@@ -27,12 +27,12 @@ export default async function Dashboard() {
   ).length;
 
   return (
-    <section className="mb-auto overflow-x-hidden text-white xs:w-full lg:max-w-screen-xl mx-auto">
+    <section className="min-h-screen mb-auto overflow-x-hidden text-white xs:w-full lg:max-w-screen-xl mx-auto h-full">
       <AppNavbar />
 
-      <div className="grid grid-cols-12">
+      <div className="grid grid-cols-12 h-full">
         <SideMenu />
-        <div className="col-span-2 p-4 space-y-8">
+        <div className="col-span-2 p-4 space-y-8 h-full">
           <span>Your Board</span>
 
           <div className="flex flex-col space-y-2">

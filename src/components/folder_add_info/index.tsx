@@ -8,7 +8,7 @@ const FolderAddInfo = ({ userId }: { userId: string }) => {
   const [formData, setFormData] = useState({
     creatorId: userId,
     name: "",
-    collabs: `{${userId}}`,
+    collabsId: [userId],
   });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -47,12 +47,12 @@ const FolderAddInfo = ({ userId }: { userId: string }) => {
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="collabs">Collabs:</label>
+        <label htmlFor="collabsId">Collabs:</label>
         <input
           type="text"
-          id="collabs"
-          name="collabs"
-          value={formData.collabs}
+          id="collabsId"
+          name="collabsId"
+          value={formData.collabsId}
           onChange={handleChange}
           placeholder="user#12345"
           className="rounded-md border border-zinc-900 bg-black px-2 py-2 focus:border-zinc-800 focus:outline-none"

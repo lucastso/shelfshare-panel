@@ -30,7 +30,7 @@ const AppNavbarUserInfo = ({
       onClick={() => setOpened((opened) => !opened)}
     >
       {opened && (
-        <div className="w-full h-auto absolute -bottom-24 z-30 right-0 bg-zinc-950 border border-zinc-900 text-zinc-400 text-sm px-4 py-3 rounded-md flex flex-col gap-2 justify-between">
+        <div className="w-full h-auto absolute top-12 z-30 right-0 bg-zinc-950 border border-zinc-900 text-zinc-400 text-sm px-4 py-3 rounded-md flex flex-col gap-2 justify-between">
           <Link
             href="/profile"
             className="transition-all hover:text-zinc-400 text-zinc-500 text-sm rounded-md flex items-center cursor-pointer mb-2 gap-2"
@@ -58,7 +58,7 @@ const AppNavbarUserInfo = ({
             <span>Profile</span>
           </Link>
           <div
-            className="transition-all hover:text-red-400 text-red-500 text-sm rounded-md flex items-center cursor-pointer mb-2 gap-2"
+            className="transition-all hover:text-red-400 text-red-500 text-sm rounded-md flex items-center cursor-pointer gap-2"
             onClick={handleLogOut}
           >
             <svg

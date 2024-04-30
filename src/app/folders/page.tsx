@@ -5,13 +5,15 @@ import { FolderProps } from "@/types/folder_props";
 import { LoginIsRequiredServer, authConfig } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
+import Image from "next/image";
+import DeleteButton from "@/components/delete_button";
 
 export default async function Folders() {
   const requestFolders = await api.get("/folders");
   const dataFolders: FolderProps[] = requestFolders.data;
 
-  /*await LoginIsRequiredServer();
-  const session = await getServerSession(authConfig);*/
+  await LoginIsRequiredServer();
+  const session = await getServerSession(authConfig);
 
   return (
     <section className="mb-auto overflow-x-hidden text-white xs:w-full lg:max-w-screen-xl mx-auto">
@@ -69,21 +71,64 @@ export default async function Folders() {
                   </th>
                   <th className="pb-4 px-4">Created by</th>
                   <th className="pb-4 px-4">Collabs</th>
-                  <th className="pb-4 px-4">Bookmarks</th>
+                  <th className="pb-4 px-4"></th>
                 </tr>
                 {dataFolders.map((item) => {
                   return (
                     <tr
                       key={item.id}
                       className="text-sm transition-all group z-10 border-y-8 border-black bg-zinc-950"
-                      style={{ background: item.color }}
                     >
-                      <td className="h-16 px-4 rounded-l-xl">
+                      <td className="h-14 px-4 rounded-l-xl">
                         <span>{item.name}</span>
                       </td>
-                      <td className="h-16 px-4"></td>
-                      <td className="h-16 px-4"></td>
-                      <td className="h-16 px-4 rounded-r-xl"></td>
+                      <td className="h-14 px-4 flex items-center gap-2 text-zinc-400">
+                        <Image
+                          src={item.creator.photo}
+                          alt=""
+                          width={512}
+                          height={256}
+                          className="w-6 rounded-full"
+                        />
+                        <span>{item.creator.name}</span>
+                      </td>
+                      <td className="h-14 px-4"></td>
+                      {session?.user?.id == item.creator.id ? (
+                        <td className="h-14 px-4 rounded-r-xl flex items-center justify-end gap-2">
+                          <Link href={`/folders/edit/${item.id}`}>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              className="text-zinc-400 icon icon-tabler icons-tabler-outline icon-tabler-edit opacity-75 hover:opacity-100 cursor-pointer transition-all"
+                            >
+                              <path
+                                stroke="none"
+                                d="M0 0h24v24H0z"
+                                fill="none"
+                              />
+                              <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+                              <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+                              <path d="M16 5l3 3" />
+                            </svg>
+                          </Link>
+                          <DeleteButton
+                            type="folders"
+                            key={item.id}
+                            id={item.id}
+                          />
+                        </td>
+                      ) : (
+                        <td className="h-14 px-4 rounded-r-xl flex items-center justify-end gap-2">
+                          <span className="invisible">Not yours!</span>
+                        </td>
+                      )}
                     </tr>
                   );
                 })}

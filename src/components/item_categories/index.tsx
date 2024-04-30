@@ -18,7 +18,7 @@ const ItemsCategory = ({ category }: { category: CategoryProps }) => {
 
   return (
     <div
-      className="text-sm px-4 py-3 rounded-md flex items-center justify-between cursor-pointer"
+      className="text-sm px-4 py-3 rounded-md flex items-center cursor-pointer"
       style={{
         background: category.backgroundColor,
         color: category.textColor,

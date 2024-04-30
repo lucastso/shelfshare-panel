@@ -1,7 +1,10 @@
 export interface UserProps {
-  id: number;
+  id: string;
   email: string;
+  name: string;
+  photo: string;
   password: string;
+  createdAt: string;
   subscription: string;
-  active_folder: number;
+  activeFolder: number;
 }

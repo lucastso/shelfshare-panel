@@ -4,4 +4,14 @@ export interface FolderProps {
   collabsId: string[];
   name: string;
   createdAt: string;
+  creator: {
+    id: string;
+    email: string;
+    name: string;
+    photo: string;
+    password: string;
+    createdAt: string;
+    subscription: string;
+    activeFolder: number;
+  };
 }
