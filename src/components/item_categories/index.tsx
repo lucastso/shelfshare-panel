@@ -1,24 +1,24 @@
-"use client";
+'use client'
 
-import { api } from "@/lib/axios";
-import { CategoryProps } from "@/types/category_props";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { api } from '@/lib/axios'
+import { CategoryProps } from '@/types/category_props'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 const ItemsCategory = ({ category }: { category: CategoryProps }) => {
-  const [opened, setOpened] = useState<boolean>(false);
+  const [opened, setOpened] = useState<boolean>(false)
 
-  const route = useRouter();
+  const route = useRouter()
   const handleDelete = (id: number) => {
     api.delete(`/categories/${id}`).then(() => {
-      route.refresh();
-    });
-  };
+      route.refresh()
+    })
+  }
 
   return (
     <div
-      className="text-sm px-4 py-3 rounded-md flex items-center cursor-pointer"
+      className="text-sm px-4 py-3 rounded-md flex items-center justify-between cursor-pointer"
       style={{
         background: category.backgroundColor,
         color: category.textColor,
@@ -36,7 +36,7 @@ const ItemsCategory = ({ category }: { category: CategoryProps }) => {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="icon icon-tabler icons-tabler-outline icon-tabler-tags"
+          className="icon icon-tabler icons-tabler-outline icon-tabler-tags min-w-4 min-h-4"
         >
           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
           <path d="M3 8v4.172a2 2 0 0 0 .586 1.414l5.71 5.71a2.41 2.41 0 0 0 3.408 0l3.592 -3.592a2.41 2.41 0 0 0 0 -3.408l-5.71 -5.71a2 2 0 0 0 -1.414 -.586h-4.172a2 2 0 0 0 -2 2z" />
@@ -124,7 +124,7 @@ const ItemsCategory = ({ category }: { category: CategoryProps }) => {
         </svg>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ItemsCategory;
+export default ItemsCategory

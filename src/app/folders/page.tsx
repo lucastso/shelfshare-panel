@@ -1,19 +1,19 @@
-import { api } from "@/lib/axios";
-import AppNavbar from "@/components/app_navbar";
-import SideMenu from "@/components/side_menu";
-import { FolderProps } from "@/types/folder_props";
-import { LoginIsRequiredServer, authConfig } from "@/lib/auth";
-import { getServerSession } from "next-auth";
-import Link from "next/link";
-import Image from "next/image";
-import DeleteButton from "@/components/delete_button";
+import { api } from '@/lib/axios'
+import AppNavbar from '@/components/app_navbar'
+import SideMenu from '@/components/side_menu'
+import { FolderProps } from '@/types/folder_props'
+import { LoginIsRequiredServer, authConfig } from '@/lib/auth'
+import { getServerSession } from 'next-auth'
+import Link from 'next/link'
+import Image from 'next/image'
+import DeleteButton from '@/components/delete_button'
 
 export default async function Folders() {
-  const requestFolders = await api.get("/folders");
-  const dataFolders: FolderProps[] = requestFolders.data;
+  const requestFolders = await api.get('/folders')
+  const dataFolders: FolderProps[] = requestFolders.data
 
-  await LoginIsRequiredServer();
-  const session = await getServerSession(authConfig);
+  await LoginIsRequiredServer()
+  const session = await getServerSession(authConfig)
 
   return (
     <section className="mb-auto overflow-x-hidden text-white xs:w-full lg:max-w-screen-xl mx-auto">
@@ -88,7 +88,7 @@ export default async function Folders() {
                           alt=""
                           width={512}
                           height={256}
-                          className="w-6 rounded-full"
+                          className="w-6 rounded-full object-contain"
                         />
                         <span>{item.creator.name}</span>
                       </td>
@@ -130,7 +130,7 @@ export default async function Folders() {
                         </td>
                       )}
                     </tr>
-                  );
+                  )
                 })}
               </tbody>
             </table>
@@ -142,5 +142,5 @@ export default async function Folders() {
         </div>
       </div>
     </section>
-  );
+  )
 }
