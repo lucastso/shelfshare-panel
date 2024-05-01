@@ -1,30 +1,30 @@
-import { api } from "@/lib/axios";
-import { BookmarkProps } from "@/types/bookmark_props";
-import AppNavbar from "@/components/app_navbar";
-import SideMenu from "@/components/side_menu";
-import Link from "next/link";
-import FavouritesCategory from "@/components/favourites_category";
-import FavouriteButton from "@/components/favourite_button";
-import { CategoryProps } from "@/types/category_props";
-import AddCategoryButton from "@/components/add_category_button";
-import ItemsCategory from "@/components/item_categories";
-import BookmarkCategory from "@/components/bookmark_category";
-import BookmarkFolder from "@/components/bookmark_folder";
-import AddFolderButton from "@/components/add_folder_button";
-import { FolderProps } from "@/types/folder_props";
-import DeleteButton from "@/components/delete_button";
+import { api } from '@/lib/axios'
+import { BookmarkProps } from '@/types/bookmark_props'
+import AppNavbar from '@/components/app_navbar'
+import SideMenu from '@/components/side_menu'
+import Link from 'next/link'
+import FavouritesCategory from '@/components/favourites_category'
+import FavouriteButton from '@/components/favourite_button'
+import { CategoryProps } from '@/types/category_props'
+import AddCategoryButton from '@/components/add_category_button'
+import ItemsCategory from '@/components/item_categories'
+import BookmarkCategory from '@/components/bookmark_category'
+import BookmarkFolder from '@/components/bookmark_folder'
+import AddFolderButton from '@/components/add_folder_button'
+import { FolderProps } from '@/types/folder_props'
+import DeleteButton from '@/components/delete_button'
 
 export default async function Dashboard() {
-  const requestBookmarks = await api.get("/bookmarks");
-  const requestCategories = await api.get("/categories");
-  const requestFolders = await api.get("/folders");
-  const dataBookmarks: BookmarkProps[] = requestBookmarks.data;
-  const dataCategories: CategoryProps[] = requestCategories.data;
-  const dataFolders: FolderProps[] = requestFolders.data;
+  const requestBookmarks = await api.get('/bookmarks')
+  const requestCategories = await api.get('/categories')
+  const requestFolders = await api.get('/folders')
+  const dataBookmarks: BookmarkProps[] = requestBookmarks.data
+  const dataCategories: CategoryProps[] = requestCategories.data
+  const dataFolders: FolderProps[] = requestFolders.data
 
   const favourites = dataBookmarks.filter(
-    (item) => item.favourite == true
-  ).length;
+    (item) => item.favourite == true,
+  ).length
 
   return (
     <section className="min-h-screen mb-auto overflow-x-hidden text-white xs:w-full lg:max-w-screen-xl mx-auto h-full">
@@ -39,7 +39,7 @@ export default async function Dashboard() {
             <FavouritesCategory size={favourites} />
 
             {dataCategories.map((category) => {
-              return <ItemsCategory category={category} key={category.id} />;
+              return <ItemsCategory category={category} key={category.id} />
             })}
 
             <Link
@@ -114,11 +114,11 @@ export default async function Dashboard() {
                               alt=""
                               width={512}
                               height={256}
-                              className="w-6 rounded-md"
+                              className="w-6 h-6"
                             />
                             <span>
                               {item.name.length > 25
-                                ? item.name.slice(0, 25) + "..."
+                                ? item.name.slice(0, 25) + '...'
                                 : item.name}
                             </span>
                             <svg
@@ -194,7 +194,7 @@ export default async function Dashboard() {
                         />
                       </td>
                     </tr>
-                  );
+                  )
                 })}
               </tbody>
             </table>
@@ -206,5 +206,5 @@ export default async function Dashboard() {
         </div>
       </div>
     </section>
-  );
+  )
 }

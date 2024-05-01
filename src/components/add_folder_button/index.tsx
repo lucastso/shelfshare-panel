@@ -1,27 +1,27 @@
-"use client";
+'use client'
 
-import { api } from "@/lib/axios";
-import { FolderProps } from "@/types/folder_props";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { api } from '@/lib/axios'
+import { FolderProps } from '@/types/folder_props'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 const AddFolderButton = ({
   folderId,
   dataFolders,
 }: {
-  folderId: number;
-  dataFolders: FolderProps[];
+  folderId: number
+  dataFolders: FolderProps[]
 }) => {
-  const router = useRouter();
-  const [opened, setOpened] = useState<boolean>(false);
+  const router = useRouter()
+  const [opened, setOpened] = useState<boolean>(false)
 
   const handleAddFolder = async (id: number, folderId: number) => {
     await api
       .post(`/bookmarks/folder/add/${id}`, { folderId: folderId })
       .then(() => {
-        router.refresh();
-      });
-  };
+        router.refresh()
+      })
+  }
 
   return (
     <div
@@ -34,7 +34,7 @@ const AddFolderButton = ({
             return (
               <div
                 onClick={() => handleAddFolder(folderId, category.id)}
-                className="text-sm px-4 py-3 rounded-md flex items-center gap-2 cursor-pointer text-zinc-400 bg-zinc-900 border border-zinc-800"
+                className="text-sm px-4 py-3 rounded-md flex items-center gap-2 cursor-pointer text-zinc-400 bg-zinc-900 border border-zinc-800 w-full"
                 key={category.name}
               >
                 <svg
@@ -54,9 +54,9 @@ const AddFolderButton = ({
                   <path d="M18 19l1.592 -1.592a4.82 4.82 0 0 0 0 -6.816l-4.592 -4.592" />
                   <path d="M7 10h-.01" />
                 </svg>
-                <span>{category.name}</span>
+                <span className="text-nowrap">{category.name}</span>
               </div>
-            );
+            )
           })}
         </div>
       ) : (
@@ -80,7 +80,7 @@ const AddFolderButton = ({
       </svg>
       <span>Add</span>
     </div>
-  );
-};
+  )
+}
 
-export default AddFolderButton;
+export default AddFolderButton
