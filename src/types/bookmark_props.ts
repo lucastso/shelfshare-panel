@@ -1,3 +1,7 @@
+import { CategoryProps } from "./category_props";
+import { FolderProps } from "./folder_props";
+import { UserProps } from "./user_props";
+
 export interface BookmarkProps {
   id: number;
   userId: string;
@@ -8,18 +12,7 @@ export interface BookmarkProps {
   favourite: boolean;
   icon: string;
   createdAt: string;
-  category: {
-    id: number;
-    name: string;
-    backgroundColor: string;
-    textColor: string;
-    createdAt: string;
-  };
-  folder: {
-    id: number;
-    creatorId: string;
-    collabsId: string[];
-    name: string;
-    createdAt: string;
-  };
+  category: CategoryProps;
+  folder: FolderProps;
+  user: UserProps
 }
